@@ -34,8 +34,11 @@ class CommentListEntry extends StatelessWidget {
         onReplyEditAction: (CommentView commentView, bool isEdit) async {
           navigateToCreateCommentPage(
             context,
-            parentCommentView: isOwnComment ? null : commentView,
-            commentView: isOwnComment ? commentView : null,
+            parentCommentView: isEdit ? null : commentView,
+            commentView: isEdit ? commentView : null,
+            onCommentSuccess: (CommentView commentView) {
+              // TODO: If we are modifying our own comment, update accordingly
+            },
           );
         },
         isOwnComment: isOwnComment,

@@ -1,9 +1,12 @@
 import 'dart:async';
 
-import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:lemmy_api_client/v3.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:back_button_interceptor/back_button_interceptor.dart';
+
 import 'package:thunder/comment/utils/navigate_comment.dart';
 import 'package:thunder/community/widgets/post_card_list.dart';
 import 'package:thunder/core/auth/bloc/auth_bloc.dart';
@@ -16,10 +19,8 @@ import 'package:thunder/user/widgets/user_header.dart';
 import 'package:thunder/core/models/comment_view_tree.dart';
 import 'package:thunder/core/models/post_view_media.dart';
 import 'package:thunder/user/bloc/user_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:thunder/user/widgets/user_sidebar.dart';
 import 'package:thunder/utils/global_context.dart';
-
-import '../widgets/user_sidebar.dart';
 
 List<Widget> userOptionTypes = <Widget>[
   Padding(padding: const EdgeInsets.all(8.0), child: Text(AppLocalizations.of(GlobalContext.context)!.posts)),
@@ -292,7 +293,14 @@ class _UserPageSuccessState extends State<UserPageSuccess> with TickerProviderSt
                               }
                             },
                             onReplyEditAction: (CommentView commentView, bool isEdit) async {
-                              navigateToCreateCommentPage(context, commentView: commentView);
+                              navigateToCreateCommentPage(
+                                context,
+                                parentCommentView: isEdit ? null : commentView,
+                                commentView: isEdit ? commentView : null,
+                                onCommentSuccess: (CommentView commentView) {
+                                  // TODO: Check to see if we edited our own comment, and update accordingly
+                                },
+                              );
                             },
                             isOwnComment: widget.isAccountUser,
                           ),
@@ -350,7 +358,7 @@ class _UserPageSuccessState extends State<UserPageSuccess> with TickerProviderSt
                                 context,
                                 parentCommentView: isEdit ? null : commentView,
                                 commentView: isEdit ? commentView : null,
-                                onCommentSuccess: (commentView) {
+                                onCommentSuccess: (CommentView commentView) {
                                   // TODO: Check to see if we edited our own comment, and update accordingly
                                 },
                               );

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:lemmy_api_client/v3.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:swipeable_page_route/swipeable_page_route.dart';
+
 import 'package:thunder/account/bloc/account_bloc.dart';
 import 'package:thunder/comment/view/create_comment_page.dart';
 import 'package:thunder/core/auth/bloc/auth_bloc.dart';
@@ -11,7 +14,6 @@ import 'package:thunder/post/pages/post_page.dart';
 import 'package:thunder/shared/snackbar.dart';
 import 'package:thunder/thunder/bloc/thunder_bloc.dart';
 import 'package:thunder/utils/swipe.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Future<void> navigateToComment(BuildContext context, CommentView commentView) async {
   AccountBloc accountBloc = context.read<AccountBloc>();
@@ -48,8 +50,8 @@ Future<void> navigateToComment(BuildContext context, CommentView commentView) as
 Future<void> navigateToCreateCommentPage(
   BuildContext context, {
   PostViewMedia? postViewMedia,
-  CommentView? parentCommentView,
   CommentView? commentView,
+  CommentView? parentCommentView,
   Function(CommentView commentView)? onCommentSuccess,
 }) async {
   assert(!(postViewMedia == null && parentCommentView == null && commentView == null));
