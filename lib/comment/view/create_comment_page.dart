@@ -286,6 +286,7 @@ class _CreateCommentPageState extends State<CreateCommentPage> {
                                   isUserLoggedIn: true,
                                   isOwnComment: false,
                                   isHidden: false,
+                                  showActionBar: false,
                                 ),
                               ),
                               const Divider(height: 1, thickness: 1, indent: 8, endIndent: 8),
@@ -320,7 +321,7 @@ class _CreateCommentPageState extends State<CreateCommentPage> {
                                       : MarkdownTextInputField(
                                           controller: _bodyTextController,
                                           focusNode: _bodyFocusNode,
-                                          label: l10n.postBody,
+                                          label: l10n.comment,
                                           minLines: 8,
                                           maxLines: null,
                                           textStyle: theme.textTheme.bodyLarge,
