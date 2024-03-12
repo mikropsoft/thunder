@@ -24,6 +24,7 @@ lemmy.blahaj.zone
 lemmy.ca
 lemmy.dbzer0.com
 lemmy.eco.br
+lemmy.kya.moe
 lemmy.ml
 lemmy.nz
 lemmy.one
@@ -37,7 +38,6 @@ lemy.lol
 mander.xyz
 midwest.social
 monero.town
-pawb.social
 programming.dev
 reddthat.com
 sh.itjust.works
